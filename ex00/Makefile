@@ -9,13 +9,14 @@ OBJS		=	$(SRCS:.cpp=.o)
 
 CC			=	c++
 
-CXXFLAGS	= 	-Wall -Werror -Wextra -std=c++98
+CPPFLAGS	= 	-Wall -Werror -Wextra -std=c++98
 
 RM			=	rm -f
 
+.PHONY:		all clean fclean re
 
 $(NAME):	$(OBJS) Zombie.hpp
-			$(CC) $(CXXFLAGS) $(OBJS) -o $@
+			$(CC) $(CPPFLAGS) $(OBJS) -o $@
 
 all:		$(NAME)
 
@@ -26,5 +27,3 @@ fclean:		clean
 			$(RM) $(NAME)
 
 re:			fclean all
-
-.PHONY:		all clean fclean re

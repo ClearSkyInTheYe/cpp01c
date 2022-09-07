@@ -12,6 +12,7 @@ CPPFLAGS	=	-Wall -Werror -Wextra -std=c++98
 
 RM			=	rm -f
 
+.PHONY:		all clean fclean re
 
 $(NAME):	$(OBJS) Zombie.hpp
 			$(CPP) $(CPPFLAGS) $(OBJS) -o $@
@@ -25,5 +26,3 @@ fclean:		clean
 			$(RM) $(NAME)
 
 re:			fclean all
-
-.PHONY:		all clean fclean re
