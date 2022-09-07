@@ -1,26 +1,25 @@
-NAME		=	zombie
+NAME		=	zombies
 
 SRCS		=	main.cpp \
 				Zombie.cpp \
-				newZombie.cpp \
-				randomChump.cpp
+				zombieHorde.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 
-CC			=	c++
+CPP			=	c++
 
-CXXFLAGS	= 	-Wall -Werror -Wextra -std=c++98
+CPPFLAGS	=	-Wall -Werror -Wextra -std=c++98
 
 RM			=	rm -f
 
 
 $(NAME):	$(OBJS) Zombie.hpp
-			$(CC) $(CXXFLAGS) $(OBJS) -o $@
+			$(CPP) $(CPPFLAGS) $(OBJS) -o $@
 
 all:		$(NAME)
 
 clean:
-			$(RM) $(OBJS) $(DEPS)
+			$(RM) $(OBJS)
 
 fclean:		clean
 			$(RM) $(NAME)
