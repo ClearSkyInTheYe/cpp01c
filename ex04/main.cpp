@@ -1,33 +1,42 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 void ft_replace(std::string &s1, std::string &s2, std::ifstream &file, std:: string &filename)
 {
-	std::ifstream	file2(filename + ".replace");
-	size_t x = 0;
+	std::ofstream	file2(filename + ".replace");
 	size_t v = 0;
-	std::string strbuf;
-	std::string tmp;
+	std::string str;
+	std::string s;
+	std::string t;
 
-//	file2.open(filename + ".replace");
-	if (!file2.is_open()) {
+	if (!file2.is_open())
+	{
 		std::cout << "Error: cannot write to " << filename + ".replace" << std::endl;
 		std::cout << "Please, check the file access rights" << std::endl;
 		return ;
 	}
-	while (file.eof())
+	while (getline(file, str))
 	{
-		getline(file, tmp);
-		if (!tmp.compare(s1))
+		v = 0;
+		while (str.find(s1, v) != std::string::npos)
 		{
-			while (tmp.compare(s2))
-			{
-				file2 << tmp;
-			}
+			v = str.find(s1, v);
+			s.append(str.substr(0, v));
+			s.append(s2);
+			t = str.substr(v + s1.length());
+			s.append(t);
+			str = s;
+			s.clear();
+			t.clear();
+			v = v + s2.length();
 		}
-		tmp.clear();
+		file2 << str;
+		if (!file2.eof())
+			file2 << std::endl;
 	}
-
+	file2.close();
+	file.close();
 }
 
 int main(int argc, char **argv)
