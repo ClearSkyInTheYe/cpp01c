@@ -8,5 +8,5 @@ public:
 	~HumanB();
 	HumanB(std::string name);
 	void attack();
-	void setWeapon(Weapon w);
+	void setWeapon(Weapon *w);
 };
