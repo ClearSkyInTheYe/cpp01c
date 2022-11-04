@@ -1,5 +1,6 @@
 #include "Harl.hpp"
 
+
 Harl::Harl() {}
 
 Harl::~Harl() {}
@@ -38,13 +39,6 @@ void Harl::warning()
 void Harl::complain( std::string level )
 {
 	int i = 0;
-	void (Harl:: *p_func[4])() =
-			{
-					&Harl::debug,
-					&Harl::info,
-					&Harl::warning,
-					&Harl::error,
-			};
 	std::string levels[5] =
 			{
 					"DEBUG",
@@ -56,14 +50,18 @@ void Harl::complain( std::string level )
 
 	while (i <= 4 && levels[i] != level)
 		i++;
-	while (i > 4)
-	{
-		std::cout << "--- No such level. ---" << std::endl;
-		return ;
-	}
-	while (i <= 3)
-	{
-		(this->*p_func[i])();
-		return ;
+	switch (i) {
+		case 0:
+			this->debug();
+		case 1:
+			this->info();
+		case 2:
+			this->warning();
+		case 3:
+			this->error();
+			break;
+		default:
+			std::cout << "--- No such level. ---" << std::endl;
+			break;
 	}
 }
